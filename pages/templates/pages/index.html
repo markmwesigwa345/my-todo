@@ -17,10 +17,10 @@
 
 <!-- ── Header ── -->
 <header>
-  <div style="display:flex;justify-content:flex-end;align-items:center;gap:16px;padding:16px 20px 0">
-  <span style="color:var(--muted);font-size:14px">👤 {{ request.user.username }}</span>
-  <a href="{% url 'logout' %}" style="color:var(--accent);font-size:14px;text-decoration:none">Log out</a>
-  </div>
+<div class="nav-bar">
+  <span>👤 {{ request.user.username }}</span>
+  <a href="{% url 'logout' %}">Log out</a>
+</div>
   <div class="header-top">
     <div>
       <div class="date-chip">
