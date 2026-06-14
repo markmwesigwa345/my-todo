@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-m$(5&8+xs%!7c(2o2x&9^62-ra*%im92h5@9^efb-kvkb+@kav
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.pythonanywhere.com',
+]
 
 
 # Application definition
@@ -119,3 +123,22 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'pages' / 'static']
 
 LOGIN_URL = '/login/'
+
+# If you deploy to a custom domain (e.g. on PythonAnywhere), add the full
+# origin(s) to CSRF_TRUSTED_ORIGINS, for example:
+# CSRF_TRUSTED_ORIGINS = ['https://yourdomain.pythonanywhere.com']
+# CSRF_TRUSTED_ORIGINS = ['https://yourdomain.pythonanywhere.com']
+
+# Add the production origin(s) you will use. Example for PythonAnywhere:
+CSRF_TRUSTED_ORIGINS = ['https://mwemasolutions.pythonanywhere.com']
+
+# Where to collect static files for production (used by `collectstatic`).
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Production security recommendations (enable these after you provision HTTPS):
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SECURE_HSTS_SECONDS = 31536000
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True

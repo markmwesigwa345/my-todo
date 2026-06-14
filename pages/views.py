@@ -10,7 +10,8 @@ from .models import Todo
 
 
 def home(request):
-    return render(request, 'pages/index.html')
+    todos = Todo.objects.order_by('time')
+    return render(request, 'pages/index.html', {'todos': todos})
 
 
 def register_view(request):
@@ -45,7 +46,7 @@ def logout_view(request):
     return redirect('login')
 
 
-@csrf_exempt
+@login_required
 @require_http_methods(["GET", "POST"])
 def api_tasks(request):
     if request.method == 'GET':
@@ -70,7 +71,7 @@ def api_tasks(request):
         return JsonResponse({'id': todo.id, 'text': todo.title, 'done': todo.is_done}, status=201)
 
 
-@csrf_exempt
+@login_required
 @require_http_methods(["PATCH", "DELETE"])
 def api_task_detail(request, pk):
     todo = get_object_or_404(Todo, pk=pk)

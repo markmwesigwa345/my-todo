@@ -13,8 +13,8 @@
 <div class="auth-wrap">
   <div class="auth-card">
     <div>
-      <h1>Welcome back</h1>
-      <p>Log in to your account.</p>
+      <h1>Create account</h1>
+      <p>Create a new account to save your tasks.</p>
     </div>
     {% if error %}
     <div class="auth-error">{{ error }}</div>
@@ -22,11 +22,12 @@
     <form method="post" style="display:flex;flex-direction:column;gap:12px">
       {% csrf_token %}
       <input name="username" type="text" placeholder="Username" autocomplete="off" required />
-      <input name="password" type="password" placeholder="Password" required />
-      <button class="btn-add" type="submit">Log in</button>
+      <input name="password1" type="password" placeholder="Password" required />
+      <input name="password2" type="password" placeholder="Confirm password" required />
+      <button class="btn-add" type="submit">Create account</button>
     </form>
     <div class="auth-link">
-      No account? <a href="{% url 'register' %}">Create one</a>
+      Already have an account? <a href="{% url 'login' %}">Log in</a>
     </div>
   </div>
 </div>

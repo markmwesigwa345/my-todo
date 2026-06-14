@@ -18,8 +18,13 @@
 <!-- ── Header ── -->
 <header>
 <div class="nav-bar">
-  <span>👤 {{ request.user.username }}</span>
-  <a href="{% url 'logout' %}">Log out</a>
+  {% if request.user.is_authenticated %}
+    <span>👤 {{ request.user.username }}</span>
+    <a href="{% url 'logout' %}">Log out</a>
+  {% else %}
+    <a href="{% url 'login' %}">Log in</a>
+    <a href="{% url 'register' %}">Register</a>
+  {% endif %}
 </div>
   <div class="header-top">
     <div>
@@ -103,7 +108,7 @@
   <!-- Task list -->
   <div>
     <div class="section-label" style="margin-bottom:12px">Tasks</div>
-    <div class="list-area" id="list-area"></div>
+    <ul class="list-area todo-list" id="list-area" role="list"></ul>
   </div>
 </main>
 
