@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register — My Day</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'pages/css/todo.css' %}">
+</head>
+<body>
+<div class="glow"></div>
+
+<div style="max-width:400px;margin:80px auto;padding:0 20px">
+  <h1 style="font-family:'Syne',sans-serif;margin-bottom:8px">Create account</h1>
+  <p style="color:var(--muted);margin-bottom:32px">Start planning your day.</p>
+
+  {% if error %}
+  <div style="color:var(--red);margin-bottom:16px">{{ error }}</div>
+  {% endif %}
+
+  <form method="post" style="display:flex;flex-direction:column;gap:16px">
+    {% csrf_token %}
+    <input name="username" type="text" placeholder="Username" autocomplete="off" required />
+    <input name="password1" type="password" placeholder="Password" required />
+    <input name="password2" type="password" placeholder="Confirm password" required />
+    <button class="btn-add" type="submit" style="width:100%;justify-content:center">Create account</button>
+  </form>
+
+  <p style="margin-top:24px;color:var(--muted);text-align:center">
+    Already have an account? <a href="{% url 'login' %}" style="color:var(--accent)">Log in</a>
+  </p>
+</div>
+</body>
+</html>
