@@ -10,7 +10,7 @@ from .models import Todo
 
 
 def home(request):
-    todos = Todo.objects.order_by('time')
+    todos = Todo.objects.filter(user=request.user).order_by('time')
     return render(request, 'pages/index.html', {'todos': todos})
 
 
@@ -50,7 +50,7 @@ def logout_view(request):
 @require_http_methods(["GET", "POST"])
 def api_tasks(request):
     if request.method == 'GET':
-        todos = Todo.objects.order_by('time').values('id', 'title', 'is_done', 'time')
+        todos = Todo.objects.filter(user=request.user).order_by('time').values('id', 'title', 'is_done', 'time')
         data = [
             {
                 'id': t['id'],
@@ -65,6 +65,7 @@ def api_tasks(request):
     if request.method == 'POST':
         body = json.loads(request.body)
         todo = Todo.objects.create(
+            user=request.user,
             title=body.get('text', ''),
             time=body.get('time') or None
         )
@@ -74,7 +75,7 @@ def api_tasks(request):
 @login_required
 @require_http_methods(["PATCH", "DELETE"])
 def api_task_detail(request, pk):
-    todo = get_object_or_404(Todo, pk=pk)
+    todo = get_object_or_404(Todo, pk=pk, user=request.user)
 
     if request.method == 'PATCH':
         body = json.loads(request.body)
