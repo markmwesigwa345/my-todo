@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>My Day — Todo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,8 +15,7 @@
 
 <div class="glow"></div>
 
-<!-- ── Header ── -->
-<header>
+<!-- ── Nav ── -->
 <div class="nav-bar">
   {% if request.user.is_authenticated %}
     <span>👤 {{ request.user.username }}</span>
@@ -26,6 +25,9 @@
     <a href="{% url 'register' %}">Register</a>
   {% endif %}
 </div>
+
+<!-- ── Header ── -->
+<header>
   <div class="header-top">
     <div>
       <div class="date-chip">

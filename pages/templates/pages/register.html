@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Login — My Day</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'pages/css/todo.css' %}">
@@ -19,11 +19,11 @@
     {% if error %}
     <div class="auth-error">{{ error }}</div>
     {% endif %}
-    <form method="post" style="display:flex;flex-direction:column;gap:12px">
+    <form class="auth-form" method="post">
       {% csrf_token %}
-      <input name="username" type="text" placeholder="Username" autocomplete="off" required />
-      <input name="password1" type="password" placeholder="Password" required />
-      <input name="password2" type="password" placeholder="Confirm password" required />
+      <input name="username" type="text" placeholder="Username" autocomplete="username" required />
+      <input name="password1" type="password" placeholder="Password" autocomplete="new-password" required />
+      <input name="password2" type="password" placeholder="Confirm password" autocomplete="new-password" required />
       <button class="btn-add" type="submit">Create account</button>
     </form>
     <div class="auth-link">
