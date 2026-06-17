@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Todo
 
-
+@login_required
 def home(request):
     todos = Todo.objects.filter(user=request.user).order_by('time')
     return render(request, 'pages/index.html', {'todos': todos})
